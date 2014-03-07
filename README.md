@@ -23,10 +23,11 @@ The git revision history has been wiped to remove sensitive data. This code has 
 3. Set up the DB: `rake db:create, rake db:migrate`
 4. Start that bish up : `rails s`
 
-## Primary original developers
+## Primary developers
 * [Jason Parraga (Full Stack)](https://github.com/Sovietaced)
 * [Bob Nisco (Full Stack)](https://github.com/BobNisco)
+
 ## Special thanks
 * [Travis Beatty (Platform)](https://github.com/travisby)
 * [Vin Raia (Finance)](https://github.com/VincentRaia)
-* [Anthony Barranco (Security)](https://github.com/AnthonyB28)
+* [Anthony Barranco (Security/Consulting)](https://github.com/AnthonyB28)
