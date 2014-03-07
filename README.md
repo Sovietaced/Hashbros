@@ -12,6 +12,7 @@ Hashbros is an alt-coin profit-switching mining and auto exchanging multi-pool t
 * Carefully crafted architecture for running financial audits
 * Automated payouts/redemptions
 * New Relic integration for reporting engine/cron task errors
+* Capistrano deployment recipes
 
 ## Disclaimer
 The git revision history has been wiped to remove sensitive data. This code has a number of stubs where you will have enter your own credentials/configuration details to get things really working. Keep in mind that this is only 1/3 of the entire Hashbros architecture. Also, the styling was reverted to stock bootstrap considering the styling was not a product of our own. If you do get this running yourself you will largely find that it is quite useless. This has been open sourced primarily in hopes that those can learn from our code. Most of the magic happens in app/models/engine. If anyone really wants to maintain this codebase in a similar fashion to MPOS, you are welcomed to do so, just drop us an email. 
