@@ -24,5 +24,9 @@ The git revision history has been wiped to remove sensitive data. This code has 
 4. Start that bish up : `rails s`
 
 ## Primary original developers
-* [Jason Parraga](https://github.com/Sovietaced)
-* [Bob Nisco](https://github.com/BobNisco)
+* [Jason Parraga (Full Stack)](https://github.com/Sovietaced)
+* [Bob Nisco (Full Stack)](https://github.com/BobNisco)
+## Special thanks
+* [Travis Beatty (Platform)](https://github.com/travisby)
+* [Vin Raia (Finance)](https://github.com/VincentRaia)
+* [Anthony Barranco (Security)](https://github.com/AnthonyB28)
