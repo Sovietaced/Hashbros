@@ -1,0 +1,17 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Revenues</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<div class="body horizontal-scroll-table">
+					<%= render "revenues/revenues_table", :revenues => @revenues %>
+					<%= paginate @revenues %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

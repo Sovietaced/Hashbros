@@ -1,0 +1,28 @@
+<table class="table table-striped no-margin sources-table tablesorter">
+<thead>
+<tr>
+	<th>#</th>
+	<th>User</th>
+	<th>Name</th>
+	<th>Accepted Shares</th>
+	<th>Rejected Shares</th>
+	<th>Reject Rate</th>
+	<th>Percentage of Work</th>
+</tr>
+</thead>
+<tbody>
+<% @round.worker_credits_by_percentage_of_work.each_with_index do |credit, index| %>
+	<tr>
+	<td><%= index + 1 %></td>
+	<% cache credit do %>
+	<td><%= link_to credit.worker.user.username, credit.worker.user %></td>
+	<td><%= credit.worker.username %></td>
+	<td><%= credit.accepted_shares %></td>
+	<td><%= credit.rejected_shares %></td>
+	<td><%= "%0.2f" % credit.reject_rate.to_f %></td>
+	<td><%= "%0.2f" % credit.percentage_of_work_string %>%</td>
+	</tr>
+	<% end %>
+<% end %>
+</tbody>
+</table>

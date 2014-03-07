@@ -1,0 +1,44 @@
+<table class="table table-striped no-margin sources-table tablesorter">
+<thead>
+<tr>
+	<th>ID</th>
+	<th>Coin</th>
+	<th>Time</th>
+	<th>Coins</th>
+	<th>Blocks</th>
+	<th>Status</th>
+	<th>Accepted Shares</th>
+	<th>Rejected Shares</th>
+	<th>Your Earnings</th>
+</tr>
+</thead>
+<tbody>
+<% if not @round %>
+	<% current_user.rounds.reorder(id: :desc).limit(20).uniq.each do |round| %>
+		<tr data-link="<%= round_path(round) %>" style="cursor: pointer;">
+			<td><%= link_to round.id, round_path(round) %></td>
+			<td><%= link_to round.pool.coin.symbol, coin_path(round.pool.coin) %></td>
+			<td><%= round.time %></td>
+			<td><%= "%0.2f" % round.total_coins.to_f %></td>
+			<td><%= round.blocks.count %></td>
+			<%= render partial: '/partials/round_status_td', locals: {round: round} %>
+			<td class="color-green"><%= round.accepted %></td>
+			<td class="color-red"><%= round.rejected %></td>
+			<td><%= round.estimated_earnings_for_user_string(current_user) %></td>
+		</tr>
+	<% end %>
+<% else %>
+	<tr>
+		<td><%= @round.id %></td>
+		<td><%= @round.pool.coin.symbol %></td>
+		<td><%= @round.time %></td>
+		<td><%= "%0.2f" % @round.total_coins.to_f %></td>
+		<td><%= @round.blocks.count %></td>
+		<%= render partial: '/partials/round_status_td', locals: {round: @round} %>
+		<td class="color-green"><%= @round.accepted %></td>
+		<td class="color-red"><%= @round.rejected %></td>
+		<td><%= @round.estimated_earnings_for_user_string(current_user) %></td>
+	</tr>
+<% end %>
+</tbody>
+</table>

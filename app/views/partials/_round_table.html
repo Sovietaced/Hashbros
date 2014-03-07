@@ -1,0 +1,51 @@
+<table class="table table-striped no-margin sources-table tablesorter">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Coin</th>
+			<th>Time</th>
+			<th>Coins</th>
+			<th>Blocks</th>
+			<th>State</th>
+			<th>Accepted Shares</th>
+			<th>Rejected Shares</th>
+			<th>Pool Earnings</th>
+			<th>User Earnings</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% if not @round %>
+		<% @rounds.each do |round| %>
+			<% cache round do %>
+			<tr data-link="<%= round_path(round) %>" class="clicky">
+				<td><%= link_to round.id, round_path(round) %></td>
+				<td><%= link_to round.coin.symbol, round.coin %></td>
+				<td><%= round.time %></td>
+				<td><%= "%0.2f" % round.total_coins.to_f %></td>
+				<td><%= round.blocks.count %></td>
+				<%= render partial: '/partials/round_status_td', locals: {round: round} %>
+				<td class="color-green"><%= round.accepted %></td>
+				<td class="color-red"><%= round.rejected %></td>
+				<td><%= round.estimated_earnings_string %></td>
+			<% end %>
+				<td><%= round.estimated_earnings_for_user_string(user) %></td>
+			</tr>
+		<% end %>
+	<% else %>
+		<% cache @round do %>
+		<tr>
+			<td><%= link_to @round.id, round_path(@round) %></td>
+			<td><%= link_to @round.coin.symbol, @round.coin %></td>
+			<td><%= @round.time %></td>
+			<td><%= "%0.2f" % @round.total_coins.to_f %></td>
+			<td><%= @round.blocks.count %></td>
+			<%= render partial: '/partials/round_status_td', locals: {round: @round} %>
+			<td class="color-green"><%= @round.accepted %></td>
+			<td class="color-red"><%= @round.rejected %></td>
+			<td><%= @round.estimated_earnings_string %></td>
+			<% end %>
+			<td><%= @round.estimated_earnings_for_user_string(user) %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

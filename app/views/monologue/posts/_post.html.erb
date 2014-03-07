@@ -1,0 +1,19 @@
+<div class="row">
+	<section class="col-md-12">
+		<div class="widget">
+			<section>
+			  <%= render partial: 'monologue/posts/post_header', locals: {post: post} %>
+
+			  <div class="content" data-monologue="content">
+			    <%= truncate_html(post.content, length: 1000, omission: '...') %>
+			  </div>
+
+			  <div class="tags" data-monologue="tags">
+			  	<h4>Tags:</h4>
+			    <%= render post.tags %>
+			  </div>
+			  <%= link_to t(".readmore"), post.full_url, class: "button" %>
+			</section>
+		</div>
+	</section>
+</div>

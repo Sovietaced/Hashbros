@@ -1,0 +1,23 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Your Deposits</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<header>
+					<h4>Your Deposit History</h4>
+				</header>
+				<div class="body">
+					<% if @deposits.blank? %>
+					<p>You do not have any deposits</p>
+					<% else %>
+						<%= render "partials/deposit_table", :deposits => @deposits %>
+					<% end %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

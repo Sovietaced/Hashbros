@@ -1,0 +1,34 @@
+<table class="table table-striped sources-table tablesorter">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Round #</th>
+			<th>Address</th>
+			<th>Mined Coin</th>
+			<th>Payout Coin</th>
+			<th>Amount</th>
+			<th>Percent of Work</th>
+			<th>Round Status</th>
+			<th>Redeemed?</th>
+			<th>Time</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% payouts.each do |payout| %>
+			<% cache payout do %>
+			<tr>
+				<td><%= payout.id %></td>
+				<td><%= link_to payout.round.id, payout.round %></td>
+				<td><%= payout.address_string %></td>
+				<td><%= link_to payout.round.coin.symbol, payout.round.coin %></td>
+				<td><% if !payout.coin.nil? %><%= payout.coin.name %><% end %></td>
+				<td class="color-green"><%= payout.amount_string %> BTC</td>
+				<td><%= payout.worker_credit.percentage_of_work_string %>%</td>
+				<%= render partial: '/partials/round_status_td', locals: {round: payout.round} %>
+				<td><%= payout.redeemed_string %></td>
+				<td><%= payout.created_at %></td>
+			</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>

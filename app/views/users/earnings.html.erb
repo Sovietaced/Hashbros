@@ -1,0 +1,71 @@
+<% title "My Earnings" %>
+<div class="content container">
+	<% cache "#{current_user.id}:earnings", :expires_in => 10.minutes, skip_digest: true do %>
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Your Earnings <small><a href="https://hashbros.co.in/blog/2014/estimated-balance-confirmed-balance-redeemable-balance">What do the balances mean?</a></small></h2>
+			<div id="visits-info" class="visits-info">
+				<section class="widget">
+					<div class="body no-margin">
+						<div class="row">
+							<div class="col-md-2">
+								<div class="key"><i class="fa fa-btc"></i> Estimated Balance</div>
+								<div class="value"><%= @current_user.estimated_balance_string(@current_user.estimated_balance) %> BTC</div>
+							</div>
+							<div class="col-md-2">
+								<div class="key"><i class="fa fa-btc"></i> Confirmed Balance</div>
+								<div class="value"><%= @current_user.confirmed_balance_string(@current_user.confirmed_balance) %> BTC</div>
+							</div>
+							<div class="col-md-2">
+								<div class="key"><i class="fa fa-btc twipsy" data-toggle="tooltip" title="Your balance is calculated by fully traded rounds"></i> Redeemable Balance</div>
+								<div class="value"><%= @current_user.balance_string(@current_user.balance) %> BTC</div>
+							</div>
+							<div class="col-md-3">
+								<% if @current_user.payouts.ready.count > 0 %>
+									<button type="button" id="redeem-user-payouts-button" class="btn btn-info btn-lg" style="margin-top: 20px;">Redeem payouts</button>
+								<% else %>
+									<button type="button" class="btn btn-danger btn-lg" style="margin-top: 20px;">No payouts to redeem</button>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<header>
+					<h4 class="twipsy" data-toggle="tooltip" data-placement="left" title="Your deposits are earnings from rounds in which you did not auto trade">Deposit History</h4>
+				</header>
+				<div class="body horizontal-scroll-table">
+					<% if @deposits.blank? %>
+						<p>There are no deposits</p>
+					<% else %>
+						<%= render "partials/deposit_table", :deposits => @deposits %>
+						<%= paginate @deposits, :param_name => 'deposits_page' %>
+					<% end %>
+				</div>
+			</section>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<header>
+					<h4 class="twipsy" data-toggle="tooltip" data-placement="left" title="Your payouts are earnings from rounds in which you did auto trade">Payout History</h4>
+				</header>
+				<div class="body horizontal-scroll-table">
+					<% if @payouts.blank? %>
+						<p>There are no payouts</p>
+					<% else %>
+						<%= render "partials/payout_table", :payouts => @payouts %>
+						<%= paginate @payouts, :param_name => 'payouts_page' %>
+					<% end %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

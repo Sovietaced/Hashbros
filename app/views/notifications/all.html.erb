@@ -1,0 +1,38 @@
+<% title "My Notifications" %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Your Notifications</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<section class="widget">
+				<div class="body">
+					<% if @notifications.blank? %>
+					<p>You do not have any notifications</p>
+					<% else %>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Type</th>
+								<th>Description</th>
+								<th>Time</th>
+							</tr>
+						</thead>
+						<tbody>
+						<% @notifications.each do |notif| %>
+							<tr>
+								<td><%= raw notif.generate_icon %></td>
+								<td><a href="<%= notif.generate_link %>"><%= notif.generate_string %></a></td>
+								<td><%= l(notif.created_at, :format => :short) %></td>
+							</tr>
+						<% end %>
+						</tbody>
+					</table>
+					<% end %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

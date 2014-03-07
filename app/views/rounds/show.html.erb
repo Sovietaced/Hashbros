@@ -1,0 +1,116 @@
+<% title "Round #{@round.id} Overview" %>
+	<div class="content container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="page-title">Round <%= @round.id %> Overview</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="progress progress-striped active">
+					<div class="progress-bar<% if @round.state_value == 8 %> progress-bar-success<% end %>" role="progressbar" aria-valuenow="<%= @round.state_to_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @round.state_to_percentage %>%;">
+						<span class="sr-only"><%= @round.state_to_percentage %>% Complete</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<section class="widget">
+					<header>
+						<h4>
+							Round Stats
+						</h4>
+					</header>
+					<div class="body horizontal-scroll-table">
+						<% cache "#{@round.id} round table", :expires_in => 3.minutes do %>
+						<%= render 'partials/round_table', :user => @user %>
+						<% end %>
+					</div>
+				</section>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<section class="widget">
+					<header>
+						<h4>
+							Blocks Found
+						</h4>
+					</header>
+					<div class="body horizontal-scroll-table">
+						<% cache "#{@round.id} block table", :expires_in => 3.minutes do %>
+						<%= render "partials/block_table" %>
+						<% end %>
+					</div>
+				</section>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<section class="widget">
+					<header>
+						<h4>
+							Workers
+						</h4>
+					</header>
+					<div class="body horizontal-scroll-table">
+						<% cache "#{@round.id} worker credit table", :expires_in => 3.minutes do %>
+						<%= render "partials/worker_credit_table" %>
+						<% end %>
+					</div>
+				</section>
+			</div>
+		</div>
+		<% if @round.deposited? %>
+		<div class="row">
+			<div class="col-md-12">
+				<section class="widget">
+					<header>
+						<h4>
+							Deposits
+						</h4>
+					</header>
+					<div class="body horizontal-scroll-table">
+						<% cache "#{@round.id} deposit table", :expires_in => 3.minutes do %>
+						<%= render "partials/deposit_table", :deposits => @round.deposits %>
+						<% end %>
+					</div>
+				</section>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<section class="widget">
+					<header>
+						<h4>
+							Sell Orders
+						</h4>
+					</header>
+					<div class="body horizontal-scroll-table">
+						<% cache "#{@round.id} order table", :expires_in => 3.minutes do %>
+						<%= render "partials/order_table", :orders => @round.orders %>
+						<% end %>
+					</div>
+				</section>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<section class="widget">
+					<header>
+						<h4>
+							Trades
+						</h4>
+					</header>
+					<div class="body horizontal-scroll-table">
+						<% cache "#{@round.id} trade table", :expires_in => 3.minutes do %>
+						<%= render "partials/trade_table", :trades => @round.trades %>
+						<% end %>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
+<% end %>

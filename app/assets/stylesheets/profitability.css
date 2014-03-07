@@ -1,0 +1,6 @@
+.coin-image {
+	padding-right: 8px;
+}
+#profitability-table tr td:first-child {
+	min-width: 250px;
+}

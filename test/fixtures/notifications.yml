@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  category: 1
+  target_id: 1
+  read: false
+
+two:
+  user_id: 
+  category: 1
+  target_id: 1
+  read: false

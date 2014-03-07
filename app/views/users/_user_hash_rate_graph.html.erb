@@ -1,0 +1,9 @@
+<div class="col-md-12" id="user-hashrate-graph-wrapper">
+	<header>
+		<h4>User Hash Rate</h4>
+	</header>
+	<div id="user-hashrate-graph" class="col-md-12"></div>
+</div>
+<%= javascript_tag do %>
+	var metrics_data = <%= raw @user.worker_histories.metrics_data().to_json %>;
+<% end %>

@@ -1,0 +1,26 @@
+<table class="table table-striped no-margin sources-table tablesorter">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Round</th>
+			<th>Status</th>
+			<th>Amount</th>
+			<th>Address</th>
+			<th>Time Submitted</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% revenues.each do |revenue| %>
+		<% cache revenue do %>
+		<tr>
+			<td><%= revenue.id %></td>
+			<td><%= link_to revenue.round.id, revenue.round %></td>
+			<td><%= revenue.status %></td>
+			<td class="color-green"><%= revenue.amount %> <%= revenue.round.coin.symbol %></td>
+			<td><%= revenue.address %></td>
+			<td><%= revenue.created_at %></td>
+		</tr>
+		<% end %>
+		<% end %>
+	</tbody>
+</table>

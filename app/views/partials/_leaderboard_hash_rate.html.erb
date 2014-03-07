@@ -1,0 +1,35 @@
+<div class="col-md-6">
+	<section class="widget">
+		<header>
+			<h4>
+				Current Hashrate
+				<div class="pull-right">
+					<%= link_to User.ranked_by_hashrate.first.username, User.ranked_by_hashrate.first %>
+					<i class="fa fa-star"></i>
+				</div>
+			</h4>
+		</header>
+		<div class="body horizontal-scroll-table">
+			<table class="table table-striped no-margin sources-table tablesorter">
+				<thead>
+					<tr>
+						<th>Rank</th>
+						<th>Username</th>
+						<th>Hash Rate</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% User.ranked_by_hashrate.each_with_index do |user, index| %>
+						<% cache user do %>
+							<tr>
+								<td><%= index + 1 %></td>
+								<td><%= link_to user.username, user %></td>
+								<td><%= "%0.2f" % user.current_hashrate(user.current_workers) %> Mh/s</td>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</div>

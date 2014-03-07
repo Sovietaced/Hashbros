@@ -1,0 +1,86 @@
+<% title @coin.name %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">
+			<%= image_tag(@coin.image_url) %> <%= @coin.name %> <small><%= @coin.symbol %></small></h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-8 col-md-12">
+			<section class="widget">
+				<div class="body">
+					<span class="pull-right">Updated <%= timeago_tag @coin.updated_at, :nojs => true %></span>
+					<ul id="charts" class="nav nav-tabs">
+						<li class="active"><a href="#profitability" data-toggle="tab">Profitability Rating</a></li>
+						<li><a href="#difficulty" data-toggle="tab">Difficulty</a></li>
+						<li><a href="#exchange" data-toggle="tab">Exchange Rate</a></li>
+						<li><a href="#network-hash-rate" data-toggle="tab">Network Hash Rate</a></li>
+					</ul>
+					<div id="chart-tabs" class="tab-content">
+						<div class="tab-pane fade active in" id="profitability">
+							<div class="row">
+								<div class="col-md-12 horizontal-scroll-table">
+									<div class="coin-drilldown-chart" id="profitability-chart"></div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="difficulty">
+							<div class="row">
+								<div class="col-md-12 horizontal-scroll-table">
+									<div class="coin-drilldown-chart" id="difficulty-chart"></div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="exchange">
+							<div class="row">
+								<div class="col-md-12 horizontal-scroll-table">
+									<div class="coin-drilldown-chart" id="exchange-chart"></div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="network-hash-rate">
+							<div class="row">
+								<div class="col-md-12 horizontal-scroll-table">
+									<div class="coin-drilldown-chart" id="network-hash-rate-chart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="col-lg-4 col-md-6">
+			<section class="widget">
+				<div class="body">
+					<center>
+					<h2><i class="fa fa-users"></i>  <%= "%0.2f" % @coin.difficulty.to_f %> Difficulty</h2>
+					</center>
+				</div>
+			</section>
+			<section class="widget">
+				<div class="body">
+					<center>
+					<h2><i class="fa fa-th-large"></i>  <%= @coin.blocks %> Blocks</h2>
+					</center>
+				</div>
+			</section>
+			<section class="widget">
+				<div class="body">
+					<center>
+					<h2><%= "%0.2f" % @coin.reward.to_f %> Block Reward</h2>
+					</center>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+<% cache("#{@coin.name} charts", :expires_in => 12.hours) do %>
+	<%= javascript_tag do %>
+		var coin_average_profitabilities = <%= raw @coin.get_average_profitabilities(@number_of_days).to_json %>;
+		var coin_average_difficultues = <%= raw @coin.get_average_difficulties(@number_of_days).to_json %>;
+		var coin_average_exchanges = <%= raw @coin.get_average_exchanges(@number_of_days).to_json %>;
+		var coin_average_network_hash_rates = <%= raw @coin.get_average_network_hash_rates(@number_of_days).to_json %>;
+		var number_of_days = <%= @number_of_days %>;
+	<% end %>
+<% end %>

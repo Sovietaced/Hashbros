@@ -1,0 +1,32 @@
+<table class="table table-striped no-margin sources-table tablesorter">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>State</th>
+			<th>Amount</th>
+			<th>Address</th>
+			<th>Time Submitted</th>
+			<th>Time Finished</th>
+			<th>Transfer Hash</th>
+			<th>(Re)Process</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% redemptions.each do |redemption| %>
+		<tr>
+			<td><%= redemption.id %></td>
+			<td><%= redemption.state_string %></td>
+			<td class="color-green"><%= redemption.amount %> <%= redemption.coin.symbol %></td>
+			<td><%= redemption.address %></td>
+			<td><%= redemption.created_at %></td>
+			<td><%= redemption.finished %></td>
+			<td><%= redemption.tx_hash_string %></td>
+			<% if not redemption.processed? %>
+			<td><%= link_to "Process", "/manage/redemptions/#{redemption.id}/process" %></td>
+			<% else %>
+			<td>No</td>
+			<% end %>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

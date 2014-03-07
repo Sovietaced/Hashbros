@@ -1,0 +1,15 @@
+<% title "Leaderboard" %>
+	<div class="content container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="page-title">HashBros Leaderboard</h2>
+			</div>
+		</div>
+		<div class="row">
+			<% cache "leaderboard", :expires_in => 10.minutes do %>
+				<%= render 'partials/leaderboard_shares' %>
+				<%= render 'partials/leaderboard_hash_rate' %>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+	</head>
+	<body>
+		<h1>The payout address for <%= @coin.name %> on your HashBros account has been changed</h1>
+		<p>If it was you who performed the address change, you can safely ignore this email.</p>
+		<p>If it was not you who performed the change, please <a href="<%= @login_url %>" target="_blank">login</a> and change your <a href="<%= @coin_settings_url %>" target="_blank">coin settings</a>.</p>
+		<p>Additionally, if you feel as if someone else has access to your account, please <a href="<%= @edit_user_url %>" target="_blank">change your password</a></p>
+		<p>-The HashBros Team</p>
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<% title "Metrics" %>
+<% cache "metrics", :expires_in => 10.minutes do %>
+<% # Get the last 7 days of metrics data
+@earnings_data = []
+    (0..6).each do |i|
+      start_date = (i + 1).days.ago
+      end_date = i.days.ago
+
+      @earnings_data.push(PoolHistory.metric_data_for_range(start_date.to_date, end_date.to_date))
+    end
+%>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">HashBros Overall Metrics</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<div class="body">
+					<div class="row">
+						<div class="col-md-8">
+							<h4>Last 7 Days Overview</h4>
+							<table class="table table-striped tablesorter">
+								<thead>
+									<tr>
+										<th>Date</th>
+										<th>Average Hash Rate</th>
+										<th>Estimated Total Earnings</th>
+										<th>Estimated BTC/MH</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% @earnings_data.each_with_index do |value, i| %>
+									<tr>
+										<td><%= value[:end_date].to_date %><% if i == 0 %> (Partial)<% end %></td>
+										<td><%= "%0.4f" % value[:average_hash_rate] %> MH</td>
+										<td><%= "%0.8f" % value[:estimated_btc] %> BTC</td>
+										<td><%= "%0.8f" % value[:btc_per_mh] %></td>
+									</tr>
+									<% end %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<h4>Pool Hash Rate - Last 24 Hours</h4>
+							<div id="hashrate-graph" class="col-md-12"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<h4>Active Workers - Last 24 Hours</h4>
+							<div id="active-workers-graph" class="col-md-12"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<h4>Estimated Earnings - Last 24 Hours</h4>
+							<div id="estimated-earnings-graph" class="col-md-12"></div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+<%= javascript_tag do %>
+	var earnings_data = <%= raw @earnings_data.to_json %>;
+<% end %>
+<% end %>

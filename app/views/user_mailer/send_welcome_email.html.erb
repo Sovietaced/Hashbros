@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+	</head>
+	<body>
+		<h1>Welcome to HashBros, <%= @user.email %>!</h1>
+		<p>We're glad to have you on board!</p>
+		<p>You can dive right in by <a href="<%= @login_url %>" target="_blank">logging in</a></p>
+		<p>Here are some quick points you should know about HashBros</p>
+		<p>
+			<ul>
+				<li>Read our quick "getting started" guide <a href="<%= @getting_started_url %>" target="_blank">here</a> to get hashing in just a few quick steps!</li>
+				<li>Check out the <a href="<%= @metrics_url %>" target="_blank">latest metrics</a> to see how HashBros is doing as a whole.</li>
+				<li>If you have a feature request, you can submit it on our <a href="https://hashbros.uservoice.com/" target="_blank">UserVoice page</a>.</li>
+				<li>Join the discussion on the <a href="https://bitcointalk.org/index.php?topic=395748">BitCoin Talk forum</a>.</li>
+				<li>Follow us on <a href="https://twitter.com/hashbrospool" target="_blank">Twitter @HashBrosPool</a> for the latest updates.</li>
+				<li>Subscribe to our <a href="http://www.reddit.com/r/hashbros" target="_blank">subreddit!</a>.</li>
+			</ul>
+		</p>
+		<p>Hash on, bros!</p>
+		<p>-The HashBros Team</p>
+	</body>
+</html>

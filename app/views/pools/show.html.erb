@@ -1,0 +1,40 @@
+<% title "Pool" %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Pool #<%= @pool.id %> - <%= @pool.coin.name %></h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<div class="body">
+					<div class="body horizontal-scroll-table">
+						<table class="table table-striped no-margin sources-table">
+							<thead>
+								<tr>
+									<th>Pool Coin</th>
+									<th>Current Workers</th>
+									<th>Coins Mined</th>
+									<th>Current Hash Rate</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<% cache @pool, :expires_in => 2.minutes do %>
+									<td><%= link_to @pool.coin.name, @pool.coin %></td>
+									<td><%= @pool.current_workers.count %></td>
+									<td><%= @pool.total_earnings %></td>
+									<td><%= @pool.current_hash_rate_mhs_rounded %> MH/s</td>
+									<td>Up</td>
+									<% end %>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

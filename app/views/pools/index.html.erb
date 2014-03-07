@@ -1,0 +1,81 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Pools</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<header>
+					<h4>
+						Profit Switch Pool
+					</h4>
+				</header>
+				<div class="body horizontal-scroll-table">
+					<table class="table table-striped no-margin sources-table">
+						<thead>
+							<tr>
+								<th>Current Pool</th>
+								<th>Current Pool Coin</th>
+								<th>URL</th>
+								<th>Current Workers</th>
+								<th>Coins Mined</th>
+								<th>Current Hash Rate</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<% cache Engine::ProfitSwitchEngine.current_pool, :expires_in => 2.minutes do %>
+								<td><%= link_to Engine::ProfitSwitchEngine.current_pool.id, Engine::ProfitSwitchEngine.current_pool %></td>
+								<td><%= link_to Engine::ProfitSwitchEngine.current_pool.coin.name, Engine::ProfitSwitchEngine.current_pool.coin %></td>
+								<td>stratum+tcp://mine.Hashbros.co.in:3333</td>
+								<td><%= Engine::ProfitSwitchEngine.current_pool.current_workers.count %></td>
+								<td><%= Engine::ProfitSwitchEngine.current_pool.total_earnings %></td>
+								<td><%= Engine::ProfitSwitchEngine.current_pool.current_hash_rate_mhs_rounded %> MH/s</td>
+								<td>Up</td>
+								<% end %>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+			<section class="widget">
+				<header>
+					<h4>
+						Traditional Pools
+					</h4>
+				</header>
+				<div class="body horizontal-scroll-table">
+					<table class="table table-striped no-margin sources-table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Coin</th>
+								<th>URL</th>
+								<th>Coins Mined</th>
+								<th>Hash Rate</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @pools.each do |pool| %>
+							<tr>
+								<% cache pool, :expires_in => 2.minutes do %>
+								<td><%= pool.id %></td>
+								<td><%= link_to pool.coin.name, pool.coin %></td>
+								<td><%= pool.stratum_url %></td>
+								<td><%= pool.total_earnings %></td>
+								<td><%= pool.current_hash_rate_mhs_rounded %> MH/s</td>
+								<td>Up</td>
+								<% end %>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

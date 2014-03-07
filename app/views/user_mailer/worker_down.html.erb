@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+	</head>
+	<body>
+		<h1>Hi, <%= @user.username %>!</h1>
+		<p>This is an automated email alert notifying you that your worker <%= @worker.name %> appears to be down. </p>
+		<P>Your worker last submitted work <%= @worker.worker_histories.last %> minutes ago.
+		<p>If you have pulled your off HashBros you can safely ignore this email. If this looks like an error let us know. </p>
+		<p>Hash on, bros!</p>
+		<p>-The HashBros Team</p>
+	</body>
+</html>

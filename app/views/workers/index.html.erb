@@ -1,0 +1,42 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-8">
+			<h2 class="page-title">Workers <small><a href="/workers/new"><i class="fa fa-plus clicky twipsy" id="add-worker" data-toggle="tooltip" title="Add a new Worker"></i></a></small></h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9">
+			<section class="widget">
+				<div class="body horizontal-scroll-table">
+					<h4>You have <%= pluralize(@workers.count, 'worker') %></h4>
+					<table class="table table-striped no-margin sources-table tablesorter">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Active</th>
+								<th>Hash Rate</th>
+								<th>Difficulty</th>
+								<th>Coin</th>
+								<th>Profit Switch</th>
+								<td>Delete</td>
+							</tr>
+						</thead>
+						<tbody>
+							<% @workers.each do |worker| %>
+							<tr>
+								<td><%= link_to worker.username, worker_path(worker) %></td>
+								<td><%= worker.active_string %></td>
+								<td><%= worker.hash_rate_mhs_round %> MH/s</td>
+								<td><%= worker.difficulty_string %></td>
+								<td><%= worker.last_coin_string %></td>
+								<td><%= worker.profit_switch_string %></td>
+								<td><%= link_to 'Delete', worker_path(worker), :method => :delete %></td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

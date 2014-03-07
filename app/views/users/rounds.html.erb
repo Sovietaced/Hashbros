@@ -1,0 +1,23 @@
+<% title "My Rounds" %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Round History for <%= @user.username %></h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<section class="widget">
+				<header>
+					<h4>
+						Latest Rounds
+					</h4>
+				</header>
+				<div class="body horizontal-scroll-table">
+					<%= render 'partials/round_table', :user => @user %>
+					<%= paginate @rounds %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

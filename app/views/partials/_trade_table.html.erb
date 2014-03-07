@@ -1,0 +1,39 @@
+<table class="table table-striped no-margin sources-table">
+<thead>
+<tr>
+	<th>#</th>
+	<td>Order ID</td>
+	<th>Quantity</th>
+	<th>Price</th>
+	<th>Fee</th>
+	<th>BTC</th>
+	<th>Time Traded</th>
+</tr>
+</thead>
+<tbody>
+<% trades.each_with_index do |trade, index| %>
+	<tr>
+	<td><%= index + 1 %></td>
+	<% cache trade do %>
+	<td><%= trade.order.id %></td>
+	<td><%= trade.quantity %></td>
+	<td><%= trade.price %></td>
+	<td><%= trade.fee %></td>
+	<td><%= trade.total_btc %></td>
+	<td><%= trade.created_at %></td>
+	</tr>
+	<% end %>
+<% end %>
+<% if trades.count > 1 %>
+	<tr>
+		<td>Total</td>
+		<td>Total</td>
+		<td><%= trades.sum(:quantity) %></td>
+		<td><%= trades.sum(:price) %></td>
+		<td><%= trades.sum(:fee) %></td>
+		<td><%= trades.sum(:total_btc) %></td>
+		<td>Total</td>
+	</tr>
+	<% end %>
+</tbody>
+</table>

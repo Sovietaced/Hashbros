@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<%= title :site => "HashBros" %>
+		<%= metamagic %>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<%= favicon_link_tag 'favicon.ico' %>
+		<%= favicon_link_tag 'apple-touch-icon-57x57.png', rel: 'apple-touch-icon', type: 'image/png' %>
+		<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+		<%= stylesheet_link_tag 'application', '//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700' %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body class="background-dark">
+
+		<% if !(['devise', 'errors'].include?(params[:controller])) %>
+		<%= render 'partials/navbar' %>
+		<% end %>
+
+		<%= render :partial => "shared/flash" %>
+
+		<%= yield %>
+		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+		<!--[if !(lte IE 8)]><!-->
+		<script type="text/javascript">
+		  // @license magnet:?xt=urn:btih:0b31508aeb0634b347b8270c7bee4d411b5d4109&dn=agpl-3.0.txt GPL-v3-or-Later
+		  (function(){
+		    var e = document.createElement('script'); e.type='text/javascript'; e.async = true;
+		    e.src = document.location.protocol + '//d1agz031tafz8n.cloudfront.net/thedaywefightback.js/widget.min.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(e, s);
+		  })();
+		  // @license-end
+		</script>
+		<!--<![endif]-->
+	</body>
+</html>

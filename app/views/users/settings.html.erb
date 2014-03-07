@@ -1,0 +1,95 @@
+<% title "My Settings" %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Settings</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<section class="widget">
+			<header>
+				<h4>
+					Auto Trade Settings
+				</h4>
+			</header>
+				<div class="body">
+					<%= form_tag( update_auto_trade_settings_path, :method => 'post', :id => 'user_auto_trade_settings_form', :role => 'form', :class => 'form-horizontal') do %>
+						<div class="control-group">
+							<label class="control-label" for="exchange_address">BTC Address</label>
+							<div class="controls form-group">
+								<div class="col-sm-8">
+									<%= text_field_tag(:btc_address, current_user.btc_address, size: 40) %>
+								</div>
+							</div>
+						</div>
+						<%= submit_tag("Save Settings", :class => 'btn btn-info btn-large') %>
+					<% end %>
+				</div>
+			</section>
+		</div>
+		<div class="col-md-6">
+			<section class="widget">
+			<header>
+				<h4>
+					Auto Redemption Settings
+				</h4>
+			</header>
+				<div class="body">
+					<%= form_tag( update_redemption_settings_path, :method => 'post', :id => 'user_redemption_settings_form', :role => 'form', :class => 'form-horizontal') do %>
+						<div class="control-group">
+							<label class="control-label" for="exchange_address">BTC Threshold</label>
+							<div class="controls form-group">
+								<div class="col-sm-8">
+									<%= text_field_tag(:btc_threshold, current_user.btc_threshold) %>
+								</div>
+							</div>
+						</div>
+						<%= submit_tag("Save Settings", :class => 'btn btn-info btn-large') %>
+					<% end %>
+				</div>
+			</section>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+			<header>
+				<h4>
+					Direct Deposit Settings
+				</h4>
+			</header>
+				<div class="body no-margin">
+					<%= form_tag(edit_user_coin_settings_path, :method => 'post') do %>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Symbol</th>
+									<th>Wallet Address</th>
+									<th>Auto Trade Enabled</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @coins.each do |coin| %>
+									<tr class="coin-settings" data-id="<%= coin.id %>">
+										<td><%= coin.name %></td>
+										<td><%= coin.symbol %></td>
+										<% if @saved_user_coin_settings_hash[coin.id].nil? %>
+											<td><%= text_field_tag(('usercoinsettings[' + coin.id.to_s + '][address]')) %></td>
+											<td><%= check_box_tag 'usercoinsettings[' + coin.id.to_s + '][autotrade]', 1 %></td>
+										<% else %>
+											<td><%= text_field_tag(('usercoinsettings[' + coin.id.to_s + '][address]'), @saved_user_coin_settings_hash[coin.id].payout_address) %></td>
+											<td><%= check_box_tag 'usercoinsettings[' + coin.id.to_s + '][autotrade]', 1, @saved_user_coin_settings_hash[coin.id].is_auto_trading %></td>
+										<% end %>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+						<%= submit_tag("Save Settings", :class => 'btn btn-info btn-large') %>
+					<% end %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

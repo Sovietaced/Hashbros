@@ -1,0 +1,11 @@
+<div id="user-latest-rounds">
+	<header>
+		<h4>Your Latest Rounds</h4>
+		<div class="actions">
+			<button class="btn btn-transparent btn-mini"><%= link_to 'Show All', '/users/' + current_user.id.to_s + '/rounds' %></button>
+		</div>
+	</header>
+	<div class="body horizontal-scroll-table">
+		<%= render 'partials/dashboard_round_table' %>
+	</div>
+</div>

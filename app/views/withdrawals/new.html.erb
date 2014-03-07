@@ -1,0 +1,22 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Transfer BTC from Cryptsy to HashBros account</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<section class="widget">
+				<%= form_for @withdrawal do |f| %>
+					<div class="form-group">
+						<div class="input-group">
+							Amount
+							<%= f.text_field :amount, :class => 'form-control', :required => true %>
+						</div>
+					</div>
+					<%= f.submit :class => 'btn btn-lg btn-info' %>
+				<% end %>
+			</section>
+		</div>
+	</div>
+</div>

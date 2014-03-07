@@ -1,0 +1,20 @@
+<% title "Rounds" %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Round History</h2>
+		</div>
+	</div>
+	<% cache "rounds:index:#{params[:page]}", :expires_in => 15.minutes do %>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<div class="body horizontal-scroll-table">
+					<%= render "rounds_table" %>
+					<%= paginate @rounds %>
+				</div>
+			</section>
+		</div>
+	</div>
+	<% end %>
+</div>

@@ -1,0 +1,23 @@
+<ul id="notifications-menu" class="dropdown-menu account support" role="menu" aria-labelledby="notifications-menu-toggle">
+	<% if not current_user.unread_notifications.blank? %>
+		<% current_user.unread_notifications.each do |notif| %>
+			<li role="presentation">
+				<a href="<%= notif.generate_link %>" class="notification-item support-ticket">
+					<div class="picture"><%= raw notif.generate_icon %></div>
+					<div class="details"><%= notif.generate_string %></div>
+				</a>
+			</li>
+		<% end %>
+	<% else %>
+	<li role="presentation">
+		<a href="#" class="text-align-center">
+			No new notifications
+		</a>
+	</li>
+	<% end %>
+	<li role="presentation">
+		<a href="/notifications" class="text-align-center see-all">
+			See all notifications <i class="fa fa-arrow-right"></i>
+		</a>
+	</li>
+</ul>

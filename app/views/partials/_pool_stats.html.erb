@@ -1,0 +1,64 @@
+<% if !current_coin.nil? %>
+<section class="widget" id="pool-stats">
+	<header>
+		<h4>
+			Profit Switch Pool Stats
+			<div class="pull-right">
+				<%= current_coin.symbol %>
+			</div>
+		</h4>
+	</header>
+	<div class="body">
+		<p>Mined <%= current_round.blocks.count %> blocks in <%= current_round.time %> <span class="pull-right">Round <%= link_to current_round.id, round_path(current_round) %> </span></p>
+		<ul class="server-stats">
+			<li>
+				<div class="key pull-right">Pool / Network Hash Rate</div>
+				<div class="stat">
+					<div class="info"><%= current_pool.current_hash_rate_mhs_rounded %> / <%= current_pool.network_hash_rate_mhs_rounded %> MHs (<%= "%0.2f" % ((current_pool.current_hash_rate_mhs_rounded.to_f / current_pool.network_hash_rate_mhs_rounded.to_f) * 100) %>%)</div>
+					<div class="progress progress-small progress-danger">
+						<div class="progress-bar" style="width: <%= current_pool.current_hash_rate_mhs_percent %>%;"></div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="key pull-right">Mature / Total Coins</div>
+				<div class="stat">
+					<div class="info"><%= "%0.2f" % current_round.mature_coins %> / <%= "%0.2f" % current_round.total_coins %></div>
+					<div class="progress progress-small progress-inverse">
+						<div class="progress-bar" style="width: <%= current_round.mature_coins_percent.to_i %>%;"></div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="key pull-right">Time on Block / Time to Find Block</div>
+				<div class="stat">
+					<div class="info"><%= Time.at(current_round.time_on_last_block).strftime("%H:%M:%S") %> / <%= current_pool.time_to_find_block_string %></div>
+					<div class="progress progress-small progress-inverse">
+						<div class="progress-bar" style="width: <%= current_round.time_to_find_block_percent %>%;"></div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="key pull-right">Accepted / Total Shares</div>
+				<div class="stat">
+					<div class="info"><%= current_round.accepted.to_i %> / <%= current_round.shares.to_i %> shares (<%= current_round.accept_rate %>%)</div>
+					<div class="progress progress-small">
+						<div class="progress-bar" style="width: <%= current_round.accept_rate.to_i %>%;"></div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>
+<% else %>
+<section class="widget">
+	<header>
+		<h4>
+			Profit Switch Pool Stats
+			<div class="pull-right">
+				No data
+			</div>
+		</h4>
+	</header>
+</section>
+<% end %>

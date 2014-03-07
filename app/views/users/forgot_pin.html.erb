@@ -1,0 +1,22 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Forgot your PIN?</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<section class="widget">
+				<div class="body">
+					<%= form_tag(reset_pin_path, :method => 'post') do %>
+					<p>Did you forget your PIN? Click the button below to reset it.</p>
+					<p>We will send you an email with instructions on how to reset your PIN.</p>
+					<div class="form-actions">
+						<%= submit_tag "Send Reset PIN Instructions", class: 'btn btn-block btn-lg btn-info' %>
+					</div>
+					<% end %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

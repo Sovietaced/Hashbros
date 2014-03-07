@@ -1,0 +1,35 @@
+<div class="col-md-6">
+	<section class="widget">
+		<header>
+			<h4>
+				Shares
+				<div class="pull-right">
+					<%= link_to User.ranked_by_shares.first.username, User.ranked_by_shares.first %>
+					<i class="fa fa-star"></i>
+				</div>
+			</h4>
+		</header>
+		<div class="body horizontal-scroll-table">
+			<table class="table table-striped no-margin sources-table tablesorter">
+				<thead>
+					<tr>
+						<th>Rank</th>
+						<th>Username</th>
+						<th>Shares</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% User.ranked_by_shares.each_with_index do |user, index| %>
+						<% cache user do %>
+							<tr>
+								<td><%= index + 1 %></td>
+								<td><%= link_to user.username, user %></td>
+								<td><%= user.all_time_shares(user.worker_credits) %></td>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</div>

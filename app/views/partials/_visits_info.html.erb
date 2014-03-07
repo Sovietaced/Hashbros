@@ -1,0 +1,16 @@
+	<div id="visits-info" class="visits-info">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="key"><i class="fa fa-signal"></i> Current Hash Rate</div>
+				<div class="value"><%= "%0.2f" % current_user.current_hashrate(current_user.current_workers) %> MH/s </div>
+			</div>
+			<div class="col-md-3">
+				<div class="key"><i class="fa fa-wrench"></i> Current Workers</div>
+				<div class="value"><%= current_user.current_workers.count %> </div>
+			</div>
+			<div class="col-md-3">
+				<div class="key"><i class="fa fa-ban"></i> Current Reject Rate</div>
+				<div class="value"><%= "%0.2f" % current_user.current_reject_rate %> % </div>
+			</div>
+		</div>
+	</div>

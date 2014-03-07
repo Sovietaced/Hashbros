@@ -1,0 +1,150 @@
+<% meta :title => "HashBros",
+     :description => "Crypto Alt Coin Multi Pool Profit Switch",
+     :keywords => %w(crypto scrypt alt coin multi pool profit switch bitcoin transparent secure litecoin)
+%>
+<% if user_signed_in? && !current_user.is_enabled%>
+<div class="container flash">
+	<div class="alert alert-info alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		Thanks for signing up! You are #<%= current_user.place_in_line %> in the line of users to be enabled
+	</div>
+</div>
+<% end %>
+<div class="content container">
+		<div class="landing mid">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<div class="jumbotron">
+						<h1>Welcome</h1>
+						<p><strong>HashBros</strong> is an advanced crypto currency pool mining service. We are a one stop shop for scrypt and alt-coin mining with both profit switching and traditional pools. Our service was built with extreme uptime, reliability, and transparency in mind. Our carefully designed infrastructure places each pool on it's own box, providing a much more modular and scalable pool service than others.</p>
+						<% if not current_user %>
+						<p><%= link_to "Join the Beta!", '/users/sign_up', :class => 'btn btn-success btn-lg', :role => 'button' %></p>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="widget widget-white widget-about landing">
+		<div class="container">
+			<div class="row features">
+				<div class="col-sm-4">
+					<section class="feature">
+						<div class="row">
+							<div class="col-xs-4">
+								<p>
+									<span class="icon background-danger">
+										<i class="fa fa-btc"></i>
+									</span>
+								</p>
+							</div>
+							<div class="col-xs-8">
+								<h4>Mission </h4>
+								<p>Our main goals are to help increase the reputability of crypto currencies by providing a robust, secure, and painless pool mining service. </p>
+							</div>
+						</div>
+					</section>
+				</div>
+				<div class="col-sm-4">
+					<section class="feature">
+						<div class="row">
+							<div class="col-xs-4">
+								<p>
+									<span class="icon background-warning">
+										<i class="fa fa-cogs"></i>
+									</span>
+								</p>
+							</div>
+							<div class="col-xs-8">
+								<h4>Options</h4>
+								<p>When you use HashBros, you have options. We offer a profit switching pool along with many standalone coin pools. You can put your miners on auto pilot or take full control.</p>
+							</div>
+						</div>
+					</section>
+				</div>
+				<div class="col-sm-4">
+					<section class="feature">
+						<div class="row">
+							<div class="col-xs-4">
+								<p>
+									<span class="icon background-success">
+										<i class="fa fa-search"></i>
+									</span>
+								</p>
+							</div>
+							<div class="col-xs-8">
+								<h4>Transparency</h4>
+								<p>HashBros is dedicated to providing our users with a trustworthy platform. In efforts to do this we give our users maximum transparency. You will know about every round, block, and deposit down to the transfer id. Seriously. </p>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+			<div class="row features">
+				<div class="col-sm-4">
+					<section class="feature">
+						<div class="row">
+							<div class="col-xs-4">
+								<p>
+									<span class="icon background-primary">
+										<i class="fa fa-lock"></i>
+									</span>
+								</p>
+							</div>
+							<div class="col-xs-8">
+								<h4>Secure</h4>
+								<p>As victims of pool hackings ourselves, we know how much it hurts to lose precious crypto coins. We've gone the extra mile by writing our own security system to detect malicious behavior. We take security seriously.</p>
+							</div>
+						</div>
+					</section>
+				</div>
+				<div class="col-sm-4">
+					<section class="feature">
+						<div class="row">
+							<div class="col-xs-4">
+								<p>
+									<span class="icon background-lime">
+										<i class="fa fa-check"></i>
+									</span>
+								</p>
+							</div>
+							<div class="col-xs-8">
+								<h4>Clean & Easy To Use</h4>
+								<p>We pride ourselves in making our website beautiful and effortless to use across all of your devices.</p>
+							</div>
+						</div>
+					</section>
+				</div>
+				<div class="col-sm-4">
+					<section class="feature">
+						<div class="row">
+							<div class="col-xs-4">
+								<p>
+									<span class="icon background-info">
+										<i class="fa fa-users"></i>
+									</span>
+								</p>
+							</div>
+							<div class="col-xs-8">
+								<h4>Experience HashBros for yourself!</h4>
+								<p>Sign up for the beta now and get hashing in under 2 minutes!</p>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+			<div class="row features text-align-center">
+				<div class="col-md-6">
+					<h2>Want to know how we stack up?</h2>
+					<h4>Detailed <%= link_to "pool metrics", metrics_path %> (BTC/MH, payouts, pool hash rate, active miners etc.)</h4>
+					<h4>Free <%= link_to "profitability analytics", profitability_path %> on alt-coins</h4>
+				</div>
+				<div class="col-md-6">
+					<h2>Want more info?</h2>
+					<h4>Check out our <%= link_to "frequently asked questions", '/FAQ' %></h4>
+					<h4>Feel free to <%= link_to "contact us", "/contact" %></h4>
+					<h4>Leave us feature ideas at <%= link_to "UserVoice", "https://hashbros.uservoice.com/" %></h4>
+				</div>
+			</div>
+		</div>
+	</div>

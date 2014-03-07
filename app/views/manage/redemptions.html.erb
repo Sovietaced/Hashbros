@@ -1,0 +1,17 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Redemptions</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<div class="body horizontal-scroll-table">
+					<%= render "manage/partials/redemptions_table", :redemptions => @redemptions %>
+					<%= paginate @redemptions %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

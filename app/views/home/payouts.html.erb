@@ -1,0 +1,24 @@
+<% title "Payouts" %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">All Payouts</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<header>
+					<h4>All Payout History</h4>
+				</header>
+				<div class="body">
+					<% if @payouts.blank? %>
+					<p>There are no payouts</p>
+					<% else %>
+						<%= render "partials/payout_table", :payouts => @payouts %>
+					<% end %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

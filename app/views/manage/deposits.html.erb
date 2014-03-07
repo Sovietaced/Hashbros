@@ -1,0 +1,17 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Failed Deposits</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<div class="body horizontal-scroll-table">
+					<%= render "manage/partials/deposits_table", :deposits => @deposits %>
+					<%= paginate @deposits %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

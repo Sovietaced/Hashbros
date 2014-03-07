@@ -1,0 +1,51 @@
+<table class="table table-striped no-margin tablesorter" id="profitability-table">
+	<thead>
+		<tr>
+			<th>Coin</th>
+			<th>Profitability</th>
+			<th>Difficulty</th>
+			<th>Exchange Rate</th>
+			<th>Network Hash Rate</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @coin_histories.each do |coin_history| %>
+			<% cache coin_history do %>
+			<tr data-id="<%= coin_history.coin.id %>">
+				<td>
+					<span class="pull-left coin-image">
+						<%= link_to image_tag(coin_history.coin.image_url, :style => "coin-image-size"), coin_history.coin %>
+					</span>
+					<%= link_to "#{coin_history.coin.name} (#{coin_history.coin.symbol})", coin_history.coin %><br />
+					Blocks : <%= coin_history.blocks %><br />
+					Block Reward : <%= "%0.2f" % coin_history.coin.reward %>
+					<td>
+						<div class="row"><div class="profitability-charts profitability-chart"></div></div>
+						<div class="row"><strong>Current Profitability:</strong> <%= "%0.6f" % coin_history.btc_per_day.to_f %></div>
+					</td>
+					<td>
+						<div class="row"><div class="profitability-charts difficulty-chart"></div></div>
+						<div class="row"><strong>Current Difficulty:</strong> <%= "%0.2f" % coin_history.diff.to_f %></div>
+					</td>
+					<td>
+						<div class="row"><div class="profitability-charts exchange-chart"></div></div>
+						<div class="row"><strong>Current Exchange Rate:</strong> <%= "%0.8f" % coin_history.exchange_rate.to_f %></div>
+					</td>
+					<td>
+					<div class="row"><div class="profitability-charts network-hash-rate-chart"></div></div>
+					<div class="row"><strong>Current Network Hash Rate:</strong> <%= coin_history.network_hash_rate_with_magnitude("MHs") %>
+					</td>
+				</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
+<% cache("profitability charts", :expires_in => 12.hours) do %>
+	<%= javascript_tag do %>
+		var coin_average_profitabilities = <%= raw Coin.get_average_profitabilities(@number_of_days).to_json %>;
+		var coin_average_difficultues = <%= raw Coin.get_average_difficulties(@number_of_days).to_json %>;
+		var coin_average_exchanges = <%= raw Coin.get_average_exchanges(@number_of_days).to_json %>;
+		var coin_average_network_hash_rates = <%= raw Coin.get_average_network_hash_rates(@number_of_days).to_json %>;
+		var number_of_days = <%= @number_of_days %>;
+	<% end %>
+<% end %>

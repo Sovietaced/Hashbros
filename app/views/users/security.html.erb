@@ -1,0 +1,19 @@
+<% title "My Security" %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Security</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<section class="widget">
+				<div class="body">
+					<h4><%= link_to "Change your password", edit_user_registration_path %></h4>
+					<h4><%= link_to "Change your PIN", edit_pin_path %></h4>
+					<h4><%= link_to "2-Factor Authentication Settings (Google Authenticator)", "/users/displayqr" %></h4>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

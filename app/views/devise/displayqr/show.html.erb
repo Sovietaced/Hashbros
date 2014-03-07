@@ -1,0 +1,30 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget col-md-5">
+				<div class="body">
+					<h2><%= I18n.t('title', {:scope => 'devise.registration'}) %></h2>
+
+					<%= google_authenticator_qrcode(resource) %>
+
+					<%= form_for(resource, :as => resource_name, :url => [resource_name, :displayqr], :html => { :method => :put }) do |f| %>
+						<%= devise_error_messages! %>
+						<h3><%= I18n.t('nice_request', {:scope => 'devise.registration'}) %></h3>
+						<p><%= f.label :gauth_enabled, I18n.t('qrstatus', {:scope => 'devise.registration'}) %> <%= f.check_box :gauth_enabled %></p>
+						<div id="warning" <% if current_user.gauth_enabled != '1' %>class="hide"<% end %>>
+							<p><strong>Warning</strong> Please ensure that you have scanned this QR code into Google Authenticator on your smartphone and that it shows a code before continuing. If you enable 2-Factor Authentication without it being properly set up on your smartphone, you may not be able to login to your account.</p>
+							<p>If you are unsure of how to set up Google Authenticator on your smartphone, you can view the official Google help page <a href="https://support.google.com/accounts/answer/1066447" target="_blank">here</a>.</p>
+							<div>
+								<h4>Test your code</h4>
+								<div id="response"></div>
+								<label for="gauth_code">2FA Code:</label> <input type="text" name="gauth_code" id="gauth_code">
+								<button type="submit" class="btn btn-default" id="gauth_test" data-url="<%= test_2fa_path %>">Verify Code</button>
+							</div>
+						</div>
+						<p><%= f.submit I18n.t('submit', {:scope => 'devise.registration'}), :class => 'btn btn-block btn-lg btn-info' %></p>
+					<% end %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

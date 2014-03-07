@@ -1,0 +1,113 @@
+	<% title "Developers" %>
+	<div class="content container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="page-title">HashBros Developer API
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-9">
+				<section class="widget">
+					<header>
+						<h3>
+							About
+						</h3>
+					</header>
+					<div class="body">
+						<p>As we strive for ultimate transparency it only makes sense to open up the data we already represent on the site in machine readable form, through an API. The following is the documentation for the HashBros API endpoints. As we are in beta these endpoints are subject to change, but we will try and notify our developers of potential changes ahead of time and version our APIs when possible. </p>
+					</div>
+				</section>
+				<section class="widget">
+					<header>
+						<h3>
+							REST API Resources
+						</h3>
+					</header>	
+					<div class="body">
+					<!-- Profitability -->
+					<header>
+						<h3>
+							Profitability
+						</h3>
+					</header>
+				        <table class="table table-striped">
+				          <thead>
+				            <tr>
+				              <th><b>Resource</b></th>
+				              <th><b>Description</b></th>
+				            </tr>
+				          </thead>
+				          <tbody>
+				            <tr>
+				              <td><%= link_to "GET /api/profitability", "/api/profitability" %> </td>
+				              <td>Returns a sorted list of coin JSON objects in descending order by profitability rating.</td>
+				            </tr>
+				          </tbody>
+				        </table>
+				        <!-- Coins -->
+				        <header>
+						<h3>
+							Coins
+						</h3>
+					</header>
+				        <table class="table table-striped">
+				          <thead>
+				            <tr>
+				              <th><b>Resource</b></th>
+				              <th><b>Description</b></th>
+				            </tr>
+				          </thead>
+				          <tbody>
+				            <tr>
+				              <td><%= link_to "GET /api/coins", "/api/coins" %> </td>
+				              <td>Returns a sorted list of coin JSON objects in alphabetical order.</td>
+				            </tr>
+				          </tbody>
+				        </table>
+				         <!-- Users -->
+				        <header>
+						<h3>
+							Users
+						</h3>
+					</header>
+				        <table class="table table-striped">
+				          <thead>
+				            <tr>
+				              <th><b>Resource</b></th>
+				              <th><b>Description</b></th>
+				            </tr>
+				          </thead>
+				          <tbody>
+				            <tr>
+				              <td><%= link_to "GET /api/users/:id/workers", "/developers" %> </td>
+				              <td>Returns a list of worker JSON objects belonging to the user identified by the user id passed.</td>
+				            </tr>
+				          </tbody>
+				        </table>
+				          <!-- Workers -->
+				        <header>
+						<h3>
+							Workers
+						</h3>
+					</header>
+				        <table class="table table-striped">
+				          <thead>
+				            <tr>
+				              <th><b>Resource</b></th>
+				              <th><b>Description</b></th>
+				            </tr>
+				          </thead>
+				          <tbody>
+				            <tr>
+				              <td><%= link_to "GET /api/workers/:id", "/developers" %> </td>
+				              <td>Returns a worker JSON object identified by the worker id passed.</td>
+				            </tr>
+				          </tbody>
+				        </table>
+				      </div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

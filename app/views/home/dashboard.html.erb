@@ -1,0 +1,41 @@
+<% title "Dashboard" %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="alert alert-danger">
+			  HashBros is shutting down, check out our <%= link_to "statement", "https://hashbros.co.in/blog/2014/hashbros-shutting-down" %> for more details
+			</div>
+			<h2 class="page-title">Dashboard <small><span class="fa fa-refresh"></span> Auto-refresh in <span id="refresh-countdown">90</span> seconds</small></h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="response col-md-8"></div>
+		<div class="col-md-8">
+			<section class="widget">
+				<div class="body no-margin">
+					<% cache "#{current_user.id} metrics", :expires_in => 1.minutes do %>
+						<%= render "partials/visits_info" %>
+					<% end %>
+				</div>
+			</section>
+			<section class="widget">
+				<% cache "#{current_user.id} latest rounds", :expires_in => 1.minutes do %>
+					<%= render "partials/user_latest_rounds" %>
+				<% end %>
+			</section>
+		</div>
+		<div class="col-md-4">
+			<% if !(Engine::ProfitSwitchEngine.current_pool.nil? || Engine::ProfitSwitchEngine.current_coin.nil? || Engine::ProfitSwitchEngine.current_round.nil?) %>
+				<% cache "pool stats", :expires_in => 1.minutes do %>
+					<%= render 'partials/pool_stats', :current_coin => Engine::ProfitSwitchEngine.current_coin, :current_pool => Engine::ProfitSwitchEngine.current_pool, :current_round => Engine::ProfitSwitchEngine.current_round %>
+					<% end %>
+			<% end %>
+			<%= render "shared/twitter" %>
+			<section class="widget">
+				<% cache "basic stats", :expires_in => 1.hours do %>
+					<%= render "partials/basic_stats" %>
+				<% end %>
+			</section>
+		</div>
+	</div>
+</div>

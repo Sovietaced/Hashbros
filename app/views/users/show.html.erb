@@ -1,0 +1,43 @@
+<% cache "users/#{@user.id}", :expires_in => 5.minutes do %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title"><%= @user.username %></h2>
+		</div>
+	</div>
+	<div id="visits-info" class="visits-info">
+		<div class="row">
+			<div class="col-md-12">
+				<section class="widget">
+					<div class="body">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="key"><i class="fa fa-dashboard"></i> Current User Hash Rate</div>
+								<div class="value"><%= "%0.2f" % @user.current_hashrate %> MH/s </div>
+							</div>
+							<div class="col-md-3">
+								<div class="key"><i class="fa fa-dashboard"></i> Estimated Daily User Hash Rate</div>
+								<div class="value"><%= "%0.2f" % @user.estimated_daily_hashrate %> MH/s </div>
+							</div>
+							<div class="col-md-3">
+
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<div class="body">
+					<div class="row">
+						<%= render 'users/user_hash_rate_graph' %>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+<% end %>

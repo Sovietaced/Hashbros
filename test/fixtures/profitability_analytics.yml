@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vwap: 9.99
+  rating: 1
+  pool_id: 
+
+two:
+  vwap: 9.99
+  rating: 1
+  pool_id: 

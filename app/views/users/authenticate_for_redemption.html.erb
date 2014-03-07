@@ -1,0 +1,22 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Please Authenticate To Continue</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+		<%= form_tag("/payouts/redeem/authenticate", method: "post") do %>
+			<% if current_user.gauth_enabled? %>
+				<%= label_tag(:gauth_code, "Please open up Google Authenticator and input the current 6-digit pin:") %>
+				<%= text_field_tag(:gauth_code) %>
+			<% end %>
+			<%= label_tag(:pin, "Your PIN") %>
+			<%= text_field_tag(:pin) %>
+			<%= label_tag(:password, "Your Password") %>
+			<%= password_field_tag(:password) %>
+			<%= submit_tag("Pay me") %>
+		<% end %>
+		</div>
+	</div>
+</div>

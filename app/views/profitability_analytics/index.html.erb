@@ -1,0 +1,42 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Profitability Analytics</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<section class="widget">
+				<div class="body horizontal-scroll-table">
+					<% if @pas.blank? %>
+						<p>There is no history</p>
+					<% else %>
+						<table class="table table-striped sources-table tablesorter">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Round ID</th>
+									<th>Profitability</th>
+									<th>Ranking</th>
+									<th>Coin</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @pas.each do |pa| %>
+								<tr>
+									<td><%= pa.id %></td>
+									<td><%= pa.round_id %></td>
+									<td><%= pa.vwap %></td>
+									<td><%= pa.rating %></td>
+									<td><%= pa.pool.coin.name %></td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+					<% end %>
+					<%= paginate @pas %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

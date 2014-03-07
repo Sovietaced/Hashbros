@@ -1,0 +1,10 @@
+<div class="row">
+	<div class="col-md-7 col-md-offset-1">
+		<%= render @posts %>
+
+		<% if @page %>
+			<%= render partial: "pagination" %>
+		<% end %>
+	</div>
+	<%= render "/monologue/sidebar/full_sidebar" %>
+</div>

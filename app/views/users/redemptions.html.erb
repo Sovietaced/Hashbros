@@ -1,0 +1,31 @@
+<% title "My Redemptions" %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Your Redemptions</h2>
+			<section class="widget">
+				<header>
+					<h4 class="twipsy" data-toggle="tooltip" data-placement="left" title="Your payouts are earnings from rounds in which you did auto trade">Pending Redemptions</h4>
+				</header>
+				<div class="body horizontal-scroll-table">
+					<% if @pending_redemptions.blank? %>
+						<p>You have no pending redemptions.</p>
+					<% else %>
+						<%= render "redemptions/redemptions_table", :redemptions => @pending_redemptions %>
+					<% end %>
+				</div>
+				<header>
+					<h4 class="twipsy" data-toggle="tooltip" data-placement="left" title="Your payouts are earnings from rounds in which you did auto trade">Paid Redemptions</h4>
+				</header>
+				<div class="body horizontal-scroll-table">
+					<% if @paid_redemptions.blank? %>
+						<p>You have no paid redemptions.</p>
+					<% else %>
+						<%= render "redemptions/redemptions_table", :redemptions => @paid_redemptions %>
+						<%= paginate @paid_redemptions, :param_name => 'redemptions_page' %>
+					<% end %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

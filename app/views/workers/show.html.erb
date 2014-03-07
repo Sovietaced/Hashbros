@@ -1,0 +1,55 @@
+<% if @worker.is_enabled %>
+<% cache "workers:#{@worker.id}", :expires_in => 5.minutes do %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-8">
+			<h2 class="page-title">Worker <%= @worker.username %></h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<div class="body">
+					<div class="row">
+						<div class="col-md-12">
+							<header>
+								<h4>Worker Hash Rate</h4>
+							</header>
+							<div id="worker-hashrate-graph" class="col-md-12"></div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	<% if not @worker_credits.blank? %>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="widget">
+				<div id="user-latest-rounds">
+					<header>
+						<h4>Round History</h4>
+					</header>
+					<div class="body horizontal-scroll-table">
+						<%= render 'workers/worker_credits_table', :worker_credits => @worker_credits %>
+						<%= paginate @worker_credits, :page => :worker_credits_page %>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	<% end %>
+</div>
+<%= javascript_tag do %>
+	var metrics_data = <%= raw @worker.worker_histories.metrics_data.to_json %>;
+<% end %>
+<% end %>
+<% else %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Worker does not exist</h2>
+		</div>
+	</div>
+</div>
+<% end %>

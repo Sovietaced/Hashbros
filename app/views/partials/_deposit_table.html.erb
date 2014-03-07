@@ -1,0 +1,30 @@
+<table class="table table-striped no-margin sources-table tablesorter">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Round</th>
+			<th>Coin</th>
+			<th>Transfer ID</th>
+			<th>Status</th>
+			<th>Amount</th>
+			<th>Address</th>
+			<th>Time Submitted</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% deposits.each_with_index do |deposit, index| %>
+		<tr>
+			<td><%= index + 1 %></td>
+			<% cache deposit do %>
+			<td><%= link_to deposit.round.id, deposit.round %></td>
+			<td><%= link_to deposit.coin.symbol, deposit.coin %></td>
+			<td><%= deposit.txid %></td>
+			<td><%= deposit.status %></td>
+			<td class="color-green"><%= deposit.reported_amount %></td>
+			<td><%= deposit.exchange_address %></td>
+			<td><%= deposit.created_at %></td>
+		</tr>
+		<% end %>
+		<% end %>
+	</tbody>
+</table>

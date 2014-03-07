@@ -1,0 +1,125 @@
+<% title "FAQ" %>
+<div class="content container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="page-title">Frequently Asked Questions</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<section class="widget">
+					<div class="body">
+						<div class="panel-group" id="accordion2">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+										What is HashBros?
+									</a>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p><strong>HashBros</strong> is an advanced crypto currency pool mining service. We are a one stop shop for scrypt and alt-coin mining with both profit switching and traditional pools. Our service was built with extreme uptime, reliability, and transparency in mind. Our carefully designed infrastructure places each pool on it's own box, providing a much more modular and scalable pool service than others.</p>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+										What are the fees?
+									</a>
+								</div>
+								<div id="collapseTwo" class="panel-collapse collapse">
+									<div class="panel-body">
+									   <p>Our fees are much lower than the competing pools out there. For the beta period there will be 1.0% for traditional pools, an additional 0.5% for profit-switching pool plus 0.0005 BTC fee for redemption (transaction fee). Our goal is to continue to <strong>always</strong> have a really low fee for our users even when we launch.</p>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+										What's the current status of HashBros?
+									</a>
+								</div>
+								<div id="collapseFour" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>HashBros is in a public beta phase. We had a 3-week long private alpha that allowed us to work on and scale up our engine, so we are opening it up to a public beta.</p>
+										<p>In beta, there may still be some rough edges, although the vast majority have been worked out. If you ever encouter a bug, please <%= link_to "contact us", contact_path %> and we'll be sure to work it out.</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
+										What coins will be mined?
+									</a>
+								</div>
+								<div id="collapseFive" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>Currently we support: <%= Coin.get_list_of_coins %></p>
+										<p>Note that we have a system setup so that we can add and remove crypto currencies, even new ones, on the fly without interruption!</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseSix">
+										How do automatic payouts work?
+									</a>
+								</div>
+								<div id="collapseSix" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>Automatic payouts simply cash out your balance on HashBros (deposits) to your personal wallet with the coin of your choice once it breaks the threshold we set. You can manually override our default setting, but we force the automatic payout because of security measures. Note: We currently only payout to BTC wallets</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseSeven">
+										What do you have that others don't?
+									</a>
+								</div>
+								<div id="collapseSeven" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>Lots of great things!</p>
+										<p>For one, we have a really nice website and we're very open about the operation of the system. Go ahead and ask us a question about it.</p>
+										<p>A great profit switching algorithm that isn't based on a 3rd party. We keep track of the various crypto-currency data and make our own profitability choices.</p>
+										<p>We're working on a number of really sweet options for users that other pools generally charge extra for or in "donation" fees such as email or possibly SMS alerts when miners go down, as well as any time payouts occur. And not to mention, we're just as open to suggestions as we are questions. If there is enough demand for a particular option, we can add it! Speak up!</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseEight">
+										I have a suggestion for HashBros!
+									</a>
+								</div>
+								<div id="collapseEight" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>Please, by all means, we want to hear it! And users should vote on what they want the most. <%= link_to "Give us feedback on UserVoice!", 'https://hashbros.uservoice.com/' %></p>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseNine">
+										How can I contact HashBros?
+									</a>
+								</div>
+								<div id="collapseNine" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>Please visit our <%= link_to 'Contact Us Page', '/contact' %></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

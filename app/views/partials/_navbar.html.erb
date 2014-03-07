@@ -1,0 +1,168 @@
+<div class="logo">
+	<h4><a href="/"><strong>HashBros</strong> <small>beta</small></a></h4>
+</div>
+<% if !((params[:controller] == 'home' && params[:action] == 'index') || (params[:controller] == 'devise/registrations') || (params[:controller] == 'devise/sessions') || (params[:controller] == 'devise/passwords') || (params[:controller] == 'home' && (params[:action] == 'faq' || params[:action] == 'contact') && !user_signed_in?)) %>
+<nav id="sidebar" class="sidebar nav-collapse collapse">
+	<ul id="side-nav" class="side-nav">
+		<li class="<% if params[:controller] == 'home' && (params[:action] == 'dashboard' || params[:action] == 'index') %>active<% else %>panel<% end %>">
+			<%= link_to '/' do %>
+			<i class="fa fa-home"></i> <span class="name">Home</span>
+			<% end %>
+		</li>
+		<li class="<% if params[:action] == 'profitability' %>active<% else %>panel<% end %>">
+		<%= link_to '/profitability' do %>
+			<i class="fa fa-btc"></i> <span class="name">Profitability</span>
+		<% end %>
+		</li>
+		<li class="<% if params[:controller] == 'coins' and params[:action] == 'index' %>active<% else %>panel<% end %>">
+		<%= link_to '/coins' do %>
+			<i class="fa fa-circle"></i> <span class="name">Coins</span>
+		<% end %>
+		</li>
+		<li class="<% if params[:controller] == 'pools' && params[:action] == 'index' %>active<% else %>panel<% end %>">
+		<%= link_to '/pools' do %>
+			<i class="fa fa-users"></i> <span class="name">Pools</span>
+		<% end %>
+		</li>
+		<li class="<% if params[:controller] == 'rounds' && params[:action] == 'index' %>active<% else %>panel<% end %>">
+		<%= link_to '/rounds' do %>
+			<i class="fa fa-exclamation"></i> <span class="name">Round History</span>
+		<% end %>
+		</li>
+		<li class="<% if params[:action] == 'metrics' %>active<% else %>panel<% end %>">
+		<%= link_to '/metrics' do %>
+			<i class="fa fa-dashboard"></i> <span class="name">Metrics</span>
+		<% end %>
+		</li>
+		<li class="<% if params[:action] == 'faq' %>active<% else %>panel<% end %>">
+			<%= link_to '/FAQ' do %>
+			<i class="fa fa-bookmark"></i> <span class="name">FAQ</span>
+			<% end %>
+		</li>
+		<li class="<% if params[:action] == 'getting_started' %>active<% else %>panel<% end %>">
+			<%= link_to '/getting-started' do %>
+				<i class="fa fa-flag-o"></i> <span class="name">Getting Started</span>
+			<% end %>
+		</li>
+		<li class="<% if params[:action] == 'developers' %>active<% else %>panel<% end %>">
+			<%= link_to '/developers' do %>
+				<i class="fa fa-code"></i> <span class="name">Developers</span>
+			<% end %>
+		</li>
+		<li class="<% if params[:action] == 'contact' %>active<% else %>panel<% end %>">
+			<%= link_to '/contact' do %>
+				<i class="fa fa-asterisk"></i> <span class="name">Contact Us</span>
+			<% end %>
+		</li>
+		<li class="<% if params[:controller] == 'monologue/posts' %>active<% else %>panel<% end %>">
+			<%= link_to '/blog' do %>
+				<i class="fa fa-comment"></i> <span class="name">Blog</span>
+			<% end %>
+		</li>
+		<% if user_signed_in? && params[:controller] != 'monologue/posts' && params[:controller] != 'monologue/tags' %>
+		<li class="panel">
+			<%= link_to destroy_user_session_path, :method => :delete do %>
+				<i class="fa fa-sign-out"></i> <span class="name">Sign Out</span>
+			<% end %>
+		</li>
+		<% elsif params[:controller] != 'monologue/posts' && params[:controller] != 'monologue/tags' %>
+		<li class="panel">
+			<%= link_to new_user_session_path do %>
+				<i class="fa fa-sign-in"></i> <span class="name">Sign In</span>
+			<% end %>
+		</li>
+		<li class="panel">
+			<%= link_to new_user_registration_path do %>
+				<i class="fa fa-smile-o"></i> <span class="name">Sign Up</span>
+			<% end %>
+		</li>
+		<% end %>
+	</ul>
+</nav>
+<div class="wrap">
+<% end %>
+	<header class="page-header">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<ul class="nav pull-right">
+					<% if user_signed_in? && current_user.is_enabled %>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="notifications-menu-toggle">
+							<i class="fa fa-bell"></i>
+							<% if current_user.unread_notification_count > 0 %>
+							<span class="count label-danger" id="unread-notification-count"><%= current_user.unread_notification_count %></span>
+							<% end %>
+						</a>
+						<%= render '/notifications/menu' %>
+					</li>
+					<li class="hidden-phone dropdown">
+						<a href="#" title="Account" id="account" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-user"></i>
+						</a>
+						<ul id="account-menu" class="dropdown-menu account" role="menu">
+							<% if user_signed_in? && params[:controller] != 'monologue/posts' && params[:controller] != 'monologue/tags' %>
+							<li role="presentation">
+								<%= link_to current_user do %>
+								<i class="fa fa-user"></i> <%= current_user.username %>
+								<% end %>
+							</li>
+							<% end %>
+							<li role="presentation">
+							<%= link_to '/earnings' do %>
+								  <i class="fa fa-bitcoin"></i> Earnings
+								<% end %>
+							</li>
+							<li role="presentation">
+							<%= link_to '/redemptions' do %>
+								  <i class="fa fa-bitcoin"></i> Redemptions
+								<% end %>
+							</li>
+							<li role="presentation">
+							<%= link_to '/workers' do %>
+								  <i class="fa fa-wrench"></i> Workers
+								<% end %>
+							</li>
+							<li role="presentation">
+							<%= link_to '/settings' do %>
+								  <i class="fa fa-gear"></i> Settings
+								<% end %>
+							</li>
+							<li role="presentation">
+							<%= link_to '/users/settings/security' do %>
+								  <i class="fa fa-lock"></i> Security
+								<% end %>
+							</li>
+							<% if current_user.admin? %>
+							<li role="presentation">
+							<%= link_to '/manage' do %>
+								  <i class="fa fa-lock"></i> Manage
+								<% end %>
+							</li>
+							<% end %>
+						</ul>
+					</li>
+					<% end %>
+					<% if user_signed_in? && params[:controller] != 'monologue/posts' && params[:controller] != 'monologue/tags' %>
+					<li class="hidden-phone">
+						<%= link_to destroy_user_session_path, :method => :delete do %>
+							<i class="fa fa-sign-out twipsy" data-toggle="tooltip" data-placement="bottom" title="Sign Out"></i>
+						<% end %>
+					</li>
+					<% elsif params[:controller] != 'monologue/posts' && params[:controller] != 'monologue/tags' %>
+					<li class="hidden-phone">
+						<%= link_to new_user_session_path do %>
+						<i class="fa fa-sign-in twipsy" data-toggle="tooltip" data-placement="bottom" title="Sign In"></i>
+						<% end %>
+					</li>
+					<% end %>
+					<% if user_signed_in? %>
+					<li class="visible-xs">
+						<a href="#" class="btn-navbar" data-toggle="collapse" data-target="#sidebar" title="" id="menu-toggler">
+							<i class="fa fa-bars"></i>
+						</a>
+					</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</header>

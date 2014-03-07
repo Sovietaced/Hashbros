@@ -1,0 +1,28 @@
+<% title "Coins" %>
+<% cache "coins:index", :expires_in => 1.hour do %>
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Coins supported by HashBros</h2>
+		</div>
+	</div>
+	<section class="widget">
+		<div class="body">
+			<% @coins.each_with_index do |coin, index| %>
+			<% if index % 6 == 0 %>
+			<div class="row">
+			<% end %>
+				<div class="col-md-2">
+					<center>
+					<h2><%= link_to image_tag(coin.image_url), coin_path(coin.id), :class => "coin-image-size" %> <br />
+					<%= link_to coin.name, coin_path(coin.id)  %> <small><%= coin.symbol %></small></h2>
+					</center>
+				</div>
+			<% if index % 6 == 5 %>
+				</div>
+			<% end %>
+			<% end %>
+		</div>
+	</section>
+</div>
+<% end %>

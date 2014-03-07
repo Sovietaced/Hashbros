@@ -1,0 +1,23 @@
+<div class="content container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="page-title">Create Worker</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<section class="widget">
+				<%= form_for @worker do |f| %>
+					<div class="form-group">
+						<div class="input-group">
+							Worker Name
+							<span class="input-group-addon twipsy" data-toggle="tooltip" title="We will automatically prepend your username to the workername"><%= current_user.username %>.</span>
+							<%= f.text_field :username, :class => 'form-control', :required => true %>
+						</div>
+					</div>
+					<%= f.submit :class => 'btn btn-lg btn-info' %>
+				<% end %>
+			</section>
+		</div>
+	</div>
+</div>
